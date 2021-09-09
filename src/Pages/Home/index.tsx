@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/User";
-import { UserActions } from "../../contexts/User/actions";
-import { UserActionType } from "../../contexts/User/reducer";
+import { UserActionReducerType, UserActions } from "../../contexts/User/types";
 
 const Home = () => {
   const ctx = React.useContext(UserContext);
 
   const logout = () => {
     const { dispatch } = ctx;
-    const userActionLogout: UserActionType = {
+    const userActionLogout: UserActionReducerType = {
       type: UserActions.LOGOUT_USER,
       payload: {},
     };

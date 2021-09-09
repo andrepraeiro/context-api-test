@@ -1,16 +1,21 @@
-import { GenericPayload } from "../genericPayload";
-import { UserActions } from "./actions";
-import { LoginUserSuccessPayload } from "./payloads";
-import { UserStateType } from "./state";
+import {
+  LoginUserSuccessPayload,
+  UserActionReducerType,
+  UserActions,
+  UserStateType,
+} from "./types";
 
-export type UserActionType = {
-  type: UserActions;
-  payload: GenericPayload;
+export const initialState: UserStateType = {
+  userLogged: false,
+  user: {
+    email: "",
+    password: "",
+  },
 };
 
 export const UserReducer = (
   prevState: UserStateType,
-  action: UserActionType
+  action: UserActionReducerType
 ) => {
   console.log({ prevState, action });
   switch (action.type) {
@@ -30,12 +35,4 @@ export const UserReducer = (
     default:
       return prevState;
   }
-};
-
-export const initialState: UserStateType = {
-  userLogged: false,
-  user: {
-    email: "",
-    password: "",
-  },
 };

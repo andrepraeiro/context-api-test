@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../contexts/User";
-import { UserActions } from "../../contexts/User/actions";
-import { LoginUserSuccessPayload } from "../../contexts/User/payloads";
-import { UserActionType } from "../../contexts/User/reducer";
+import {
+  LoginUserSuccessPayload,
+  UserActions,
+} from "../../contexts/User/types";
 import "./style.scss";
 
 type UserLogin = {

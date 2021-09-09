@@ -1,15 +1,11 @@
 import React from "react";
-import { initialState, UserActionType, UserReducer } from "./reducer";
-import { UserStateType } from "./state";
-
-export type UserContextType = {
-  state: UserStateType;
-  dispatch: React.Dispatch<UserActionType>;
-};
-
-export type UserProps = {
-  children: React.ReactNode;
-};
+import { initialState, UserReducer } from "./reducer";
+import {
+  UserActionReducerType,
+  UserContextType,
+  UserProps,
+  UserStateType,
+} from "./types";
 
 export const UserContext = React.createContext<UserContextType>({
   state: initialState,
@@ -18,7 +14,7 @@ export const UserContext = React.createContext<UserContextType>({
 
 export const UserProvider = ({ children }: UserProps) => {
   const [state, dispatch] = React.useReducer<
-    React.Reducer<UserStateType, UserActionType>
+    React.Reducer<UserStateType, UserActionReducerType>
   >(UserReducer, initialState);
 
   return (

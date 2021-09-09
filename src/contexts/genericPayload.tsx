@@ -1,1 +1,1 @@
-export interface GenericPayload {}
+export type GenericPayload = {};
