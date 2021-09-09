@@ -1,31 +1,41 @@
-import { ActionType, LOGIN_USER_SUCCESS } from "./actions";
+import { GenericPayload } from "../genericPayload";
+import { UserActions } from "./actions";
+import { LoginUserSuccessPayload } from "./payloads";
+import { UserStateType } from "./state";
 
-export type UserStateType = {
-  userLogged: Boolean;
-  user: {
-    name: string;
-    email: string;
-    token: string;
-  };
+export type UserActionType = {
+  type: UserActions;
+  payload: GenericPayload;
 };
 
-export const reducer = (state: UserStateType, action: ActionType) => {
+export const UserReducer = (
+  prevState: UserStateType,
+  action: UserActionType
+) => {
+  console.log({ prevState, action });
   switch (action.type) {
-    case LOGIN_USER_SUCCESS:
+    case UserActions.LOGIN_USER_SUCCESS: {
+      const { user } = action.payload as LoginUserSuccessPayload;
       return {
-        ...state,
+        ...prevState,
+        user,
         userLogged: true,
       };
+    }
+    case UserActions.LOGOUT_USER: {
+      return {
+        ...initialState,
+      };
+    }
     default:
-      return state;
+      return prevState;
   }
 };
 
 export const initialState: UserStateType = {
   userLogged: false,
   user: {
-    name: "",
     email: "",
-    token: "",
+    password: "",
   },
 };
